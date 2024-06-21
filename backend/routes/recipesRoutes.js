@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get("/search/:query", recipesController.searchRecipes);
 
+router.get("/searchIngredients/:ingredients", recipesController.recipesByIngredients);
+
 export default router;
