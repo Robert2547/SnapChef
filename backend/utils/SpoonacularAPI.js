@@ -87,6 +87,7 @@ class SpoonacularAPI {
   nutritionLabelWidget(id) {
     return this.fetchHTML(`recipes/${id}/nutritionLabel`, { id });
   }
+
 }
 
 export default SpoonacularAPI;

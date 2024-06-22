@@ -147,7 +147,7 @@ export const priceBreakdownWidget = async (req, res) => {
 
     const data = await spoonacularAPI.priceBreakdownWidget(id);
 
-    res.status(200).send(data)
+    res.status(200).send(data);
 
     return data;
   } catch (error) {

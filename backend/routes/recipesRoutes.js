@@ -21,4 +21,5 @@ router.get("/:id/priceBreakdownWidget", recipesController.priceBreakdownWidget);
 
 router.get("/:id/nutritionLabelWidget", recipesController.nutritionLabelWidget); // get recipe nutrition label widget by id
 
+
 export default router;
