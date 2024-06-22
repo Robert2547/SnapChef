@@ -1,4 +1,3 @@
-
 class SpoonacularAPI {
   constructor(apiKey) {
     if (!apiKey) {
@@ -30,6 +29,29 @@ class SpoonacularAPI {
     }
   }
 
+  async fetchHTML(endpoint, params) {
+    try {
+      const queryParams = new URLSearchParams({
+        apiKey: this.apiKey,
+        ...params,
+      });
+
+      const url = `${this.baseUrl}/${endpoint}?${queryParams.toString()}`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const html = await response.text();
+
+      return html;
+    } catch (error) {
+      console.log(`Error in fetchHTML: ${error}`);
+      throw new Error(`Error in fetchHTML: ${error}`);
+    }
+  }
+
   searchRecipes(params) {
     return this.fetchAPI("recipes/complexSearch", params);
   }
@@ -52,6 +74,18 @@ class SpoonacularAPI {
 
   getRecipeInstructions(id) {
     return this.fetchAPI(`recipes/${id}/analyzedInstructions`, { id });
+  }
+
+  ingredientsWidget(id) {
+    return this.fetchHTML(`recipes/${id}/ingredientWidget`, { id });
+  }
+
+  priceBreakdownWidget(id) {
+    return this.fetchHTML(`recipes/${id}/priceBreakdownWidget`, { id });
+  }
+
+  nutritionLabelWidget(id) {
+    return this.fetchHTML(`recipes/${id}/nutritionLabel`, { id });
   }
 }
 

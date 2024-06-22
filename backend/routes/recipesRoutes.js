@@ -15,4 +15,10 @@ router.get("/:id/summary", recipesController.getRecipeSummary); // get recipe su
 
 router.get("/:id/instructions", recipesController.getRecipeInstructions); // get recipe instructions by id
 
+router.get("/:id/ingredientsWidget", recipesController.ingredientsWidget); // get recipe ingredients widget by id
+
+router.get("/:id/priceBreakdownWidget", recipesController.priceBreakdownWidget); // get recipe price breakdown widget by id
+
+router.get("/:id/nutritionLabelWidget", recipesController.nutritionLabelWidget); // get recipe nutrition label widget by id
+
 export default router;

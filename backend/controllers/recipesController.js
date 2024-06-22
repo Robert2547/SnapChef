@@ -117,3 +117,60 @@ export const getRecipeInstructions = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// Get recipe ingredients widget by ID
+export const ingredientsWidget = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+
+    const data = await spoonacularAPI.ingredientsWidget(id);
+
+    res.status(200).send(data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in ingredientsWidget: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recipe price breakdown widget by ID
+export const priceBreakdownWidget = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+
+    const data = await spoonacularAPI.priceBreakdownWidget(id);
+
+    res.status(200).send(data)
+
+    return data;
+  } catch (error) {
+    console.log("Error in priceBreakdownWidget: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recipe nutrition label widget by ID
+export const nutritionLabelWidget = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+
+    const data = await spoonacularAPI.nutritionLabelWidget(id);
+
+    res.status(200).send(data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in nutritionLabelWidget: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
