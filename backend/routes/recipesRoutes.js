@@ -9,4 +9,10 @@ router.get("/searchIngredients/:ingredients", recipesController.recipesByIngredi
 
 router.get("/:id/similar", recipesController.similarRecipes); // get similar recipes
 
+router.get("/:id/information", recipesController.getRecipe); // get recipe all info by id
+
+router.get("/:id/summary", recipesController.getRecipeSummary); // get recipe summary by id
+
+router.get("/:id/instructions", recipesController.getRecipeInstructions); // get recipe instructions by id
+
 export default router;

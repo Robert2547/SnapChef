@@ -43,6 +43,7 @@ export const recipesByIngredients = async (req, res) => {
   }
 };
 
+// Get recipe information by ID
 export const similarRecipes = async (req, res) => {
   try {
     const id = req.params.id;
@@ -57,6 +58,62 @@ export const similarRecipes = async (req, res) => {
     return data;
   } catch (error) {
     console.log("Error in similarRecipes: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recipe information by ID
+export const getRecipe = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+
+    const data = await spoonacularAPI.getRecipe(id);
+
+    res.status(200).json(data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in getRecipe: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recipe summary by ID
+export const getRecipeSummary = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+    const data = await spoonacularAPI.getRecipeSummary(id);
+
+    res.status(200).json(data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in getRecipeSummary: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recipe instructions by ID
+export const getRecipeInstructions = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ message: "ID is required" });
+    }
+
+    const data = await spoonacularAPI.getRecipeInstructions(id);
+
+    res.status(200).json(data);
+
+    return data;
+  } catch (error) {
+    console.log("Error in getRecipeInstructions: ", error);
     res.status(500).json({ message: "Server error" });
   }
 };

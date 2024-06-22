@@ -1,3 +1,4 @@
+
 class SpoonacularAPI {
   constructor(apiKey) {
     if (!apiKey) {
@@ -38,7 +39,19 @@ class SpoonacularAPI {
   }
 
   similarRecipes(id) {
-    return this.fetchAPI(`recipes/${id}/similar`, {});
+    return this.fetchAPI(`recipes/${id}/similar`, { id });
+  }
+
+  getRecipe(id) {
+    return this.fetchAPI(`recipes/${id}/information`, { id });
+  }
+
+  getRecipeSummary(id) {
+    return this.fetchAPI(`recipes/${id}/summary`, { id });
+  }
+
+  getRecipeInstructions(id) {
+    return this.fetchAPI(`recipes/${id}/analyzedInstructions`, { id });
   }
 }
 
