@@ -1,11 +1,12 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
-import generateTokenAndSetCookie  from "../utils/generateToken.js";
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 // Signup a new user
 export const signup = async (req, res) => {
+  console.log("Signup request received");
   try {
-    const { username, password, confirmPassword } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
 
     // Check if password & confirmPassword match
     if (password !== confirmPassword) {
@@ -15,6 +16,11 @@ export const signup = async (req, res) => {
     const user = await User.findOne({ username });
     if (user) {
       return res.status(400).json({ error: "Username already exists" });
+    }
+
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
+      return res.status(400).json({ error: "Email already exists" });
     }
 
     // Hash password
@@ -27,6 +33,7 @@ export const signup = async (req, res) => {
     // User Schema
     const newUser = new User({
       username,
+      email,
       password: hashedPassword,
       profilePic: image,
     });

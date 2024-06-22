@@ -3,7 +3,7 @@ import * as authController from "../controllers/authController.js";
 
 const router = express.Router();
 
-router.post("/register", authController.signup);
+router.post("/signup", authController.signup);
 
 router.post("/login", authController.login);
 

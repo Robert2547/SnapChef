@@ -1,5 +1,6 @@
 import React from 'react'
 import './Login.css'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -15,7 +16,7 @@ const Login = () => {
         <button class="form-btn">Log in</button>
       </form>
       <p class="sign-up-label">
-        Don't have an account?<span class="sign-up-link">Sign up</span>
+        Don't have an account?<Link to={'/signup'}class="sign-up-link">Sign up</Link>
       </p>
       <div class="buttons-container">
         <div class="apple-login-button">

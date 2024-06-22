@@ -1,20 +1,47 @@
 import React from 'react'
 import './Signup.css'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import useSignup from '../../hooks/useSignup'
 
 const Signup = () => {
+const [inputs, setInputs] = useState({
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+
+const {loading, signup} = useSignup()
+const handleSubmit = async (e) => {
+  e.preventDefault(); // Prevents form from refreshing the page
+  await signup(inputs)
+  
+}
+
   return (
     <>
     <div class="form-container">
     <p class="title">Get started today</p>
-    <form class="form">
-      <input type="email" class="input" placeholder="Username"/>
-      <input type="email" class="input" placeholder="Email"/>
-      <input type="password" class="input" placeholder="Password"/>
-      <input type="email" class="input" placeholder="Confirm Password"/>
+    <form class="form" onSubmit={handleSubmit}>
+      <input type="text" class="input" placeholder="Username"
+      value={inputs.username}
+      onChange={(e) => setInputs({...inputs, username: e.target.value})}
+      />
+      <input type="email" class="input" placeholder="Email"
+      value={inputs.email}
+      onChange={(e) => setInputs({...inputs, email: e.target.value})}
+      />
+      <input type="password" class="input" placeholder="Password"
+      value={inputs.password}
+      onChange={(e) => setInputs({...inputs, password: e.target.value})}/>
+      <input type="password" class="input" placeholder="Confirm Password"
+      value={inputs.confirmPassword}
+      onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}/>
       <button class="form-btn">Sign Up</button>
     </form>
     <p class="sign-up-label">
-      Already have an account?<span class="sign-up-link">Login</span>
+      Already have an account?<Link to={'/login'} class="sign-up-link">Login</Link>
     </p>
     <div class="buttons-container">
       <div class="apple-login-button">
