@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
+import { fetchData } from "../utils/authUtils";
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
@@ -17,16 +18,16 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, confirmPassword }),
-      });
-
-      const data = await res.json();
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      const data = await fetchData(
+        "http://localhost:5000/api/auth/signup",
+        "POST",
+        {
+          username,
+          email,
+          password,
+          confirmPassword,
+        }
+      );
       console.log("User created successfully");
       toast.success("Account created successfully");
 

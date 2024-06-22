@@ -5,28 +5,30 @@ import useLogin from '../../hooks/useLogin'
 import { useState } from 'react'
 
 const Login = () => {
-  const[username, setUsername] = useState('')
-  const[password, setPassword] = useState('')
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: '',
+  })
 
   const {loading, login} = useLogin()
 
   const handleSubmit = async (e) => { 
     e.preventDefault()
 
-     await login({username, password})  
+     await login(inputs)  
   }
   return (
     <>
       <div class="form-container">
       <p class="title">Welcome back</p>
       <form class="form" onSubmit={handleSubmit}>
-        <input type="email" class="input" placeholder="Email"
-        value={username }
-        onChange={(e) => setUsername(e.target.value)}
+        <input type="text" class="input" placeholder="Username"
+        value={inputs.username}
+        onChange={(e) => setInputs({...inputs, username: e.target.value})}
         />
         <input type="password" class="input" placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={inputs.password}
+        onChange={(e) => setInputs({...inputs, password: e.target.value})}
         />
         <p class="page-link">
           <span class="page-link-label">Forgot Password?</span>

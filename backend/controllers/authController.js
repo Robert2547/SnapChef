@@ -62,6 +62,7 @@ export const signup = async (req, res) => {
 // Login an existing user
 export const login = async (req, res) => {
   try {
+
     const { username, password } = req.body;
 
     // Check if user exists
@@ -69,10 +70,12 @@ export const login = async (req, res) => {
     const isPasswordCorrect =
       user && (await bcrypt.compare(password, user.password));
 
+    
     // Check if password is correct & user exists
     if (!isPasswordCorrect) {
       return res.status(400).json({ error: "Invalid username or password" });
     }
+
 
     generateTokenAndSetCookie(user._id, res); // Generate JWT token and set cookie
 
