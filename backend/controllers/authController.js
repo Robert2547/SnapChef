@@ -5,7 +5,7 @@ import generateTokenAndSetCookie  from "../utils/generateToken.js";
 // Signup a new user
 export const signup = async (req, res) => {
   try {
-    const { fullName, username, password, confirmPassword, gender } = req.body;
+    const { username, password, confirmPassword } = req.body;
 
     // Check if password & confirmPassword match
     if (password !== confirmPassword) {
@@ -26,10 +26,8 @@ export const signup = async (req, res) => {
 
     // User Schema
     const newUser = new User({
-      fullName,
       username,
       password: hashedPassword,
-      gender,
       profilePic: image,
     });
 
@@ -74,7 +72,6 @@ export const login = async (req, res) => {
     // Send user data
     res.status(200).json({
       _id: user._id,
-      fullName: user.fullName,
       username: user.username,
       profilePic: user.profilePic,
     });
