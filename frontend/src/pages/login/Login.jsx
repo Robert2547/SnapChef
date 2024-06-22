@@ -1,19 +1,39 @@
 import React from 'react'
 import './Login.css'
 import { Link } from 'react-router-dom'
+import useLogin from '../../hooks/useLogin'
+import { useState } from 'react'
 
 const Login = () => {
+  const[username, setUsername] = useState('')
+  const[password, setPassword] = useState('')
+
+  const {loading, login} = useLogin()
+
+  const handleSubmit = async (e) => { 
+    e.preventDefault()
+
+     await login({username, password})  
+  }
   return (
     <>
       <div class="form-container">
       <p class="title">Welcome back</p>
-      <form class="form">
-        <input type="email" class="input" placeholder="Email"/>
-        <input type="password" class="input" placeholder="Password"/>
+      <form class="form" onSubmit={handleSubmit}>
+        <input type="email" class="input" placeholder="Email"
+        value={username }
+        onChange={(e) => setUsername(e.target.value)}
+        />
+        <input type="password" class="input" placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        />
         <p class="page-link">
           <span class="page-link-label">Forgot Password?</span>
         </p>
-        <button class="form-btn">Log in</button>
+        <button class="form-btn" disabled={loading}> {
+          loading ? <span className='loading loading-spinner'/> : 'Login'
+          }</button>
       </form>
       <p class="sign-up-label">
         Don't have an account?<Link to={'/signup'}class="sign-up-link">Sign up</Link>

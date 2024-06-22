@@ -38,7 +38,9 @@ const handleSubmit = async (e) => {
       <input type="password" class="input" placeholder="Confirm Password"
       value={inputs.confirmPassword}
       onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}/>
-      <button class="form-btn">Sign Up</button>
+      <button class="form-btn" disabled={loading}>
+        {loading ? <span className='loading loading-spinner'/> : 'Sign Up'}
+      </button>
     </form>
     <p class="sign-up-label">
       Already have an account?<Link to={'/login'} class="sign-up-link">Login</Link>
