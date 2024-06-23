@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../context/AuthContext";
-import { fetchData } from "../utils/authUtils";
+import { useAuthContext } from "../../context/AuthContext";
+import { fetchData } from "../../utils/authUtils";
 
 export const useLogout = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,7 @@ export const useLogout = () => {
     try {
       const data = await fetchData("/api/auth/logout", "POST");
       if (!data) throw new Error("Failed to logout");
-      
+
       console.log("User logged out successfully");
       toast.success("Logged out successfully");
 

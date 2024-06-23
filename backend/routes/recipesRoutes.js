@@ -3,7 +3,7 @@ import * as recipesController from "../controllers/recipesController.js";
 
 const router = express.Router();
 
-router.get("/search/:query", recipesController.searchRecipes); // search recipes by query (natural language)
+router.get("/search", recipesController.searchRecipes); // search recipes by query (natural language)
 
 router.get("/searchIngredients/:ingredients", recipesController.recipesByIngredients); // search recipes by ingredients
 
@@ -25,7 +25,7 @@ router.get("/favourites", recipesController.getFavourites); // get user's favour
 
 router.post("/favourites/:id", recipesController.addFavourite); // add recipe to user's favourites
 
-// router.delete("/favourites/:id", recipesController.removeFavourite); // remove recipe from user's favourites
+router.delete("/favourites/:id", recipesController.removeFavourite); // remove recipe from user's favourites
 
 
 export default router;

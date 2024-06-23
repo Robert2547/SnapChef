@@ -1,6 +1,6 @@
 import SpoonacularAPI from "../utils/SpoonacularAPI.js";
 import dotenv from "dotenv";
-import Favourite from "../models/Favourite.js";
+import Favourite from "../models/favouriteModel.js";
 
 dotenv.config();
 
@@ -10,15 +10,45 @@ const spoonacularAPI = new SpoonacularAPI(apiKey);
 // Search recipes by query (natural language)
 export const searchRecipes = async (req, res) => {
   try {
-    const query = req.params.query;
-    if (!query) {
-      return res.status(400).json({ message: "Query is required" });
+    
+    const {
+      query,
+      sort,
+      diet,
+      cuisine,
+      includeIngredients,
+      intolerances,
+      addRecipeInformation,
+      addRecipeInstructions,
+      addRecipeNutrition,
+    } = req.query;
+
+    // Build the search parameters object
+    const searchParams = {
+      query,
+      sort,
+      diet,
+      cuisine,
+      includeIngredients,
+      intolerances,
+      addRecipeInformation,
+      addRecipeInstructions,
+      addRecipeNutrition,
+    };
+
+    // Remove undefined parameters
+    Object.keys(searchParams).forEach(
+      (key) => searchParams[key] === undefined && delete searchParams[key]
+    );
+
+    if (!searchParams) {
+      return res
+        .status(400)
+        .json({ message: "Search parameters are required" });
     }
 
-    const data = await spoonacularAPI.searchRecipes(query);
+    const data = await spoonacularAPI.searchRecipes(searchParams);
     res.status(200).json(data);
-
-    return data;
   } catch (error) {
     console.log("Error in searchRecipes: ", error);
     res.status(500).json({ message: "Server error" });
