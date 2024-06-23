@@ -2,7 +2,7 @@ import React from 'react'
 import './Signup.css'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import useSignup from '../../hooks/useSignup'
+import useSignup from '../../hooks/auth/useSignup'
 
 const Signup = () => {
 const [inputs, setInputs] = useState({

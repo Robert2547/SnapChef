@@ -16,6 +16,7 @@ class SpoonacularAPI {
       });
 
       const url = `${this.baseUrl}/${endpoint}?${queryParams.toString()}`;
+
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -87,7 +88,6 @@ class SpoonacularAPI {
   nutritionLabelWidget(id) {
     return this.fetchHTML(`recipes/${id}/nutritionLabel`, { id });
   }
-
 }
 
 export default SpoonacularAPI;

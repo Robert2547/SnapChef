@@ -1,6 +1,6 @@
 import React from "react";
-import { useLogout } from "../../hooks/useLogout";
 import "./LogoutBtn.css";
+import { useLogout } from "../../hooks/auth/useLogout";
 
 const LogoutBtn = () => {
   const { loading, logout } = useLogout();

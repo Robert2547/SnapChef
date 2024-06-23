@@ -5,14 +5,16 @@ import Card from "../Card";
 const MostPopularRecipes = () => {
   const { recipes, loading, error } = useFetchRecipes({
     sort: "popularity",
-    addRecipeInformation: true,
-    addRecipeInstructions: true,
-    addRecipeNutrition: true,
   });
 
+  console.log("recipes: ", recipes);
+
   if (error) {
+    console.log("Error fetching recipes: ", error);
     return <p>There was an error fetching the recipes</p>;
   }
+
+  console.log("recipes: ", recipes);
 
   return (
     <>
@@ -20,13 +22,14 @@ const MostPopularRecipes = () => {
         <span className="loading loading-spinner" />
       ) : (
         <div className="recipe-cards">
-          {recipes.map((recipe) => (
+          
+          <p> Hello </p>
+          {/* {recipes.map((recipe) => (
             <Card
-              key={recipe.id}
               title={recipe.title}
-              details={recipe.summary} // Adjust according to the actual data structure
+              image={recipe.image} // Pass the image URL to the Card component
             />
-          ))}
+          ))} */}
         </div>
       )}
     </>

@@ -4,19 +4,29 @@
     border-radius: 20px;
     background: #f5f5f5;
     position: relative;
-    padding: 1.8rem;
     border: 2px solid #c3c6ce;
     transition: 0.5s ease-out;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
    }
-   
-   .card-details {
-    color: black;
-    height: 100%;
-    gap: .5em;
-    display: grid;
-    place-content: center;
-   }
+.card-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.card-details {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
    
    .card-button {
     transform: translate(-50%, 125%);
@@ -29,7 +39,7 @@
     padding: .5rem 1rem;
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -13px;
     opacity: 0;
     transition: 0.3s ease-out;
    }

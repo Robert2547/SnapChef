@@ -12,10 +12,13 @@ const useFetchRecipes = (params) => {
         const queryString = new URLSearchParams(params).toString();
         console.log("queryString: ", queryString);
         const response = await fetch(`/api/recipes/search?${queryString}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        console.log("data: ", data);
         setRecipes(data.results); // Adjust according to the structure of the response
       } catch (error) {
+        console.log("Error in useFetchRecipes: ", error);
         setError(error);
       } finally {
         setLoading(false);
@@ -23,7 +26,7 @@ const useFetchRecipes = (params) => {
     };
 
     fetchRecipes();
-  }, [params]);
+  }, [params]); 
 
   return { recipes, loading, error };
 };

@@ -1,7 +1,8 @@
 import React from "react";
-import "./homeWeb.css";
+import "./HomeWeb.css";
 import Button from "../Button";
 import SideBar from "../sidebar/SideBar";
+import MostPopularRecipes from "../card/popular/PopularRecipes";
 import Card from "../card/Card";
 
 export const HomeWeb = () => {
@@ -45,7 +46,7 @@ export const HomeWeb = () => {
                 </span>
               </div>
             </div>
-            <Card />
+            <Card title={"Hello World"} image={`https://picsum.photos/129.webp?random=6`}/>
           </div>
         </section>
         <section class="px-6 grid gap-6 mb-8">
