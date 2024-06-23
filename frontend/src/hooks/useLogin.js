@@ -7,7 +7,7 @@ const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
 
-  const login = async ({username, password}) => {
+  const login = async ({ username, password }) => {
     setLoading(true);
     try {
       const data = await fetchData("/api/auth/login", "POST", {
@@ -16,7 +16,7 @@ const useLogin = () => {
       });
 
       toast.success("Login successful");
-      localStorage.setItem("authToken", JSON.stringify(data));
+      localStorage.setItem("authUser", JSON.stringify(data));
       setAuthUser(data);
     } catch (error) {
       console.log(error);
