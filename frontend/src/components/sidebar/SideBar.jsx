@@ -2,6 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import LogoutBtn from "./LogoutBtn";
 import { MdFavoriteBorder } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 
 const SideBar = () => {
   return (
@@ -29,11 +30,20 @@ const SideBar = () => {
       </a>
 
       <a
-        href="#analytics"
+        href="#Favorite"
         class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-green-200 dark:text-gray-400 dark:hover:bg-slate-800"
       >
         <MdFavoriteBorder style={{ fontSize: "1.5rem" }} />
         <small class="text-center text-xs font-medium"> Favorite </small>
+      </a>
+
+      <a
+        href="#Search"
+        class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-green-200 dark:text-gray-400 dark:hover:bg-slate-800"
+      >
+        <FiSearch style={{ fontSize: "1.5rem" }} />
+
+        <small class="text-center text-xs font-medium"> Search </small>
       </a>
 
       <a
