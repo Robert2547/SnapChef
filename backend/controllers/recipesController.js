@@ -1,5 +1,6 @@
 import SpoonacularAPI from "../utils/SpoonacularAPI.js";
 import dotenv from "dotenv";
+import Favourite from "../models/Favourite.js";
 
 dotenv.config();
 
@@ -171,6 +172,82 @@ export const nutritionLabelWidget = async (req, res) => {
     return data;
   } catch (error) {
     console.log("Error in nutritionLabelWidget: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Add recipe to user's favourites
+export const addFavourite = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    if (!recipeId) {
+      return res.status(400).json({ message: "recipeID is not found!" });
+    }
+
+    const recipe = await spoonacularAPI.getRecipe(recipeId);
+    if (!recipe) {
+      return res.status(400).json({ message: "Recipe not found" });
+    }
+
+    const newFavourite = new Favourite({
+      userId: req.user._id,
+      recipeId: recipe.id,
+      title: recipe.title,
+      image: recipe.image,
+    });
+
+    if (!newFavourite) {
+      return res.status(400).json({ message: "Invalid favourite data" });
+    }
+
+    await newFavourite.save();
+
+    res.status(201).json({
+      userId: newFavourite.userId,
+      recipeId: newFavourite.recipeId,
+      title: newFavourite.title,
+      image: newFavourite.image,
+    });
+  } catch (error) {
+    console.log("Error in addFavourite: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get user's favourite recipes
+export const getFavourites = async (req, res) => {
+  try {
+    const favourites = await Favourite.findMany({ userId: req.user._id });
+    if (!favourites) {
+      return res.status(400).json({ message: "Favourites not found" });
+    }
+    res.status(200).json(favourites);
+  } catch (error) {
+    console.log("Error in getFavourites: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Remove recipe from user's favourites
+export const removeFavourite = async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    if (!recipeId) {
+      return res.status(400).json({ message: "recipeID is not found!" });
+    }
+
+    const favourite = await Favourite.findOneAndDelete({
+      userId: req.user._id,
+      recipeId,
+    });
+
+    if (!favourite) {
+      return res.status(400).json({ message: "Favourite not found" });
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    console.log("Error in removeFavourite: ", error);
     res.status(500).json({ message: "Server error" });
   }
 };

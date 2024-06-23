@@ -21,5 +21,11 @@ router.get("/:id/priceBreakdownWidget", recipesController.priceBreakdownWidget);
 
 router.get("/:id/nutritionLabelWidget", recipesController.nutritionLabelWidget); // get recipe nutrition label widget by id
 
+router.get("/favourites", recipesController.getFavourites); // get user's favourite recipes
+
+router.post("/favourites/:id", recipesController.addFavourite); // add recipe to user's favourites
+
+// router.delete("/favourites/:id", recipesController.removeFavourite); // remove recipe from user's favourites
+
 
 export default router;

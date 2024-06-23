@@ -2,6 +2,7 @@ import React from "react";
 import "./homeWeb.css";
 import Button from "../Button";
 import SideBar from "../sidebar/SideBar";
+import Card from "../card/Card";
 
 export const HomeWeb = () => {
   return (
@@ -44,6 +45,7 @@ export const HomeWeb = () => {
                 </span>
               </div>
             </div>
+            <Card />
           </div>
         </section>
         <section class="px-6 grid gap-6 mb-8">
