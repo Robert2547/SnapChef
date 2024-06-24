@@ -1,9 +1,10 @@
 import React from "react";
 import "./HomeWeb.css";
-import Button from "../Button";
 import SideBar from "../sidebar/SideBar";
 import MostPopularRecipes from "../card/popular/PopularRecipes";
 import Card from "../card/Card";
+import Button from "../button/Button";
+import Heart from "../button/Heart";
 
 export const HomeWeb = () => {
   return (
@@ -12,102 +13,69 @@ export const HomeWeb = () => {
         <SideBar />
       </nav>
       <main class="col-span-5 row-span-3 overflow-auto">
-        <section class="px-6 grid gap-6 mb-8">
+        <section class="px-1 grid gap-2 mb-8">
           <div class="flex items-center">
             <div class="flex-1">
-              <h3 class="text-2xl text-white">
-                <a
-                  class="border-b border-transparent hover:border-white"
-                  href=""
-                >
-                  Most Popular
-                </a>
-              </h3>
+              <h3 class="text-2xl text-white">Most Popular</h3>
             </div>
             <div>
               <Button text="See all" />
             </div>
           </div>
-          <div class="grid grid-cols-6 gap-4">
-            <div class="bg-gray-200 rounded-lg p-5">
-              <div class="relative pt-full mb-4">
-                <img
-                  class="block w-full absolute inset-0"
-                  src="https://picsum.photos/129.webp?random=6"
-                  alt=""
-                />
-              </div>
-              <div class="text-sm text-white text-line-clamp-1 mb-1 block">
-                Preparation For a Journey
-              </div>
-              <div class="relative pb-5">
-                <span class="text-xs text-gray-100 text-line-clamp-1">
-                  Gaho
-                </span>
-              </div>
-            </div>
-            <Card title={"Hello World"} image={`https://picsum.photos/129.webp?random=6`}/>
-          </div>
-        </section>
-        <section class="px-6 grid gap-6 mb-8">
-          <div class="flex items-center">
-            <div class="flex-1">
-              <h3 class="text-2xl text-white">Your favorite</h3>
-            </div>
-          </div>
-          <div class="grid grid-cols-6 gap-4">
-            <div class="bg-gray-200 rounded-lg p-5">
-              <div class="relative pt-full mb-4">
-                <img
-                  class="block w-full absolute inset-0"
-                  src="https://picsum.photos/129.webp?random=6"
-                  alt=""
-                />
-              </div>
-              <div class="text-sm text-white text-line-clamp-1 mb-1 block">
-                Preparation For a Journey
-              </div>
-              <div class="relative pb-5">
-                <span class="text-xs text-gray-100 text-line-clamp-1">
-                  Gaho
-                </span>
-              </div>
+          <div class="container mx-auto p-2">
+            <div class="grid grid-cols-4 gap-1">
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
             </div>
           </div>
         </section>
-        <section class="px-6 grid gap-6 mb-8">
+        <section class="px-1 grid gap-2 mb-8">
           <div class="flex items-center">
             <div class="flex-1">
-              <h3 class="text-2xl text-white">
-                <a
-                  class="border-b border-transparent hover:border-white"
-                  href=""
-                >
-                  Made for You
-                </a>
-              </h3>
+              <h3 class="text-2xl text-white">Your Favorite</h3>
             </div>
             <div>
               <Button text="See all" />
             </div>
           </div>
-          <div class="grid grid-cols-6 gap-4">
-            <div class="bg-gray-200 rounded-lg p-5">
-              <div class="relative pt-full mb-4">
-                <img
-                  class="block w-full absolute inset-0"
-                  src="https://picsum.photos/129.webp?random=6"
-                  alt=""
-                />
-              </div>
-              <div class="text-sm text-white text-line-clamp-1 mb-1 block">
-                Preparation For a Journey
-              </div>
-              <div class="relative pb-5">
-                <span class="text-xs text-gray-100 text-line-clamp-1">
-                  Gaho
-                </span>
-              </div>
+          <div class="container mx-auto p-2">
+            <div class="grid grid-cols-4 gap-1">
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
+            </div>
+          </div>
+        </section>
+        <section class="px-1 grid gap-2 mb-8">
+          <div class="flex items-center">
+            <div class="flex-1">
+              <h3 class="text-2xl text-white">Made for You</h3>
+            </div>
+            <div>
+              <Button text="See all" />
+            </div>
+          </div>
+          <div class="container mx-auto p-2">
+            <div class="grid grid-cols-4 gap-1">
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
+              <Card
+                title="Hello World"
+                image="https://picsum.photos/129.webp?random=6"
+              />
             </div>
           </div>
         </section>

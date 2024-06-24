@@ -1,16 +1,19 @@
 import React from "react";
 import "./Card.css";
-
+import { Heart } from "../button/Heart";
 const Card = ({ title, image }) => {
   return (
-    <div className="card">
-      <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-      <div className="card-details">
-        <p className="text-title">{title}</p>
+    <div className="card relative">
+      <div className="card-image" style={{ backgroundImage: `url(${image})` }}>
+        <Heart className="absolute top-2 left-2 text-red-500 w-6 h-6 z-10" />
       </div>
-      <button className="card-button"> More Info </button>
+      <div className="card-details p-4">
+        <p className="text-title">{title}</p>
+        <button className="card-button">More Info</button>
+      </div>
     </div>
   );
 };
 
 export default Card;
+
