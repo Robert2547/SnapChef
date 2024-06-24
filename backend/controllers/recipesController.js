@@ -10,7 +10,6 @@ const spoonacularAPI = new SpoonacularAPI(apiKey);
 // Search recipes by query (natural language)
 export const searchRecipes = async (req, res) => {
   try {
-    
     const {
       query,
       sort,
@@ -244,16 +243,16 @@ export const addFavourite = async (req, res) => {
   }
 };
 
-// Get user's favourite recipes
+/// Get user's favourite recipes
 export const getFavourites = async (req, res) => {
   try {
-    const favourites = await Favourite.findMany({ userId: req.user._id });
-    if (!favourites) {
-      return res.status(400).json({ message: "Favourites not found" });
+    const favourites = await Favourite.find({ userId: req.user._id });
+    if (favourites.length === 0) {
+      return res.status(404).json({ message: "Favourites not found" });
     }
     res.status(200).json(favourites);
   } catch (error) {
-    console.log("Error in getFavourites: ", error);
+    console.error("Error in getFavourites: ", error);
     res.status(500).json({ message: "Server error" });
   }
 };
