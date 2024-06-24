@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.css";
 import { Heart } from "../button/Heart";
+
 const Card = ({ title, image }) => {
   return (
     <div className="card relative">
@@ -9,11 +10,12 @@ const Card = ({ title, image }) => {
       </div>
       <div className="card-details p-4">
         <p className="text-title">{title}</p>
-        <button className="card-button">More Info</button>
+        <button className="card-button" onClick={onClick}>
+          More Info
+        </button>
       </div>
     </div>
   );
 };
 
 export default Card;
-
