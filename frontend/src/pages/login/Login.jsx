@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/auth/useLogin";
 import { useState } from "react";
+import Loading from "../../components/loading/Loading";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -17,6 +18,10 @@ const Login = () => {
 
     await login(inputs);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <div class="form-container">

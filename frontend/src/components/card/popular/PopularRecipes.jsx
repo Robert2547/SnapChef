@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useFetchRecipes from "../../../hooks/recipes/useFetchRecipes";
 import Card from "../Card";
 import { useState } from "react";
-import { useRef } from "react";
 
 const MostPopularRecipes = () => {
   const [recipes, setRecipes] = useState(() => {
