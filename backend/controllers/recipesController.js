@@ -7,6 +7,10 @@ dotenv.config();
 const apiKey = process.env.SPOONAPI_KEY;
 const spoonacularAPI = new SpoonacularAPI(apiKey);
 
+if (!apiKey && !spoonacularAPI) {
+  console.error("API key is required");
+}
+
 // Search recipes by query (natural language)
 export const searchRecipes = async (req, res) => {
   try {

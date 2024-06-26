@@ -5,6 +5,7 @@ const useFetchRecipes = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     const fetchRecipes = async () => {
       setLoading(true);
@@ -16,6 +17,7 @@ const useFetchRecipes = (params) => {
         }
         const data = await response.json();
         setRecipes(data.results); // Adjust according to the structure of the response
+        console.log("API CALLED")
       } catch (error) {
         console.log("Error in useFetchRecipes: ", error);
         setError(error);
@@ -27,6 +29,7 @@ const useFetchRecipes = (params) => {
     fetchRecipes();
   }, [params]);
 
+  console.log("useRecipes", recipes)
   return { recipes, loading, error };
 };
 

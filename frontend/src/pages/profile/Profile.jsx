@@ -41,10 +41,14 @@ const Profile = () => {
                   Name:
                 </span>
                 <input
-                  class="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
                   type="text"
                   value={user.username}
+                  className="px-4 border-l-0  input input-bordered input-success w-full max-w-xs"
                 />
+                {/* <input
+                  class="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none  rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
+                  type="text"
+                /> */}
               </div>
               <div class="flex ">
                 <span class="text-sm border bg-blue-50 font-bold uppercase rounded-l px-4 py-2  whitespace-no-wrap w-2/6">

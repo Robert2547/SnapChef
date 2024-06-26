@@ -6,25 +6,27 @@ import { useState } from "react";
 const MostPopularRecipes = () => {
   const [recipes, setRecipes] = useState(() => {
     const savedRecipes = localStorage.getItem("mostPopularRecipes");
-    return savedRecipes ? JSON.parse(savedRecipes) : [];
+    return savedRecipes ? JSON.parse(savedRecipes) : false;
   });
 
-  const [loading, setLoading] = useState(
-    !localStorage.getItem("mostPopularRecipes")
-  );
-  const [error, setError] = useState(null);
+
+  let fetchedRecipes = [];
+  let loading = false;
+  let error = null;
 
   if (!recipes) {
-    const {
-      recipes: fetchedRecipes,
-      loading: fetchLoading,
-      error: fetchError,
-    } = useFetchRecipes({ sort: "popularity" });
+    const fetchResult = useFetchRecipes({ sort: "popularity" });
+    fetchedRecipes = fetchResult.recipes;
+    loading = fetchResult.loading;
+    error = fetchResult.error;
 
-    localStorage.setItem("mostPopularRecipes", JSON.stringify(fetchedRecipes));
-    setRecipes(fetchedRecipes);
-    setLoading(fetchLoading);
-    setError(fetchError);
+    if (fetchedRecipes.length > 0) {
+      localStorage.setItem(
+        "mostPopularRecipes",
+        JSON.stringify(fetchedRecipes)
+      );
+      setRecipes(fetchedRecipes.recipes);
+    }
   }
 
   if (error) {
@@ -38,8 +40,8 @@ const MostPopularRecipes = () => {
         <span className="loading loading-spinner" />
       ) : (
         <div className="recipe-cards flex flex-wrap gap-4 justify-center w-full">
-          {recipes.slice(0,3).map((recipe) => (
-            <Card image={recipe.image} />
+          {recipes.slice(0, 3).map((recipe) => (
+            <Card key={recipe.id} image={recipe.image} />
           ))}
         </div>
       )}

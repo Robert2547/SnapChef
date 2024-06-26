@@ -17,6 +17,8 @@ export const useLogout = () => {
 
       // Remove user from local storage
       localStorage.removeItem("authUser");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("mostPopularRecipes")
       setAuthUser(null); // Remove user from context
     } catch (error) {
       toast.error(error.message);
